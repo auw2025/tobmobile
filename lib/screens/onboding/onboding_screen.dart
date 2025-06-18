@@ -34,25 +34,11 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
         children: [
           Positioned(
             width: MediaQuery.of(context).size.width * 1.7,
-            left: 100,
-            bottom: 100,
+            left: 0,
+            bottom: 0,
             child: Image.asset(
-              "assets/Backgrounds/Spline.png",
-            ),
-          ),
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-              child: const SizedBox(),
-            ),
-          ),
-          const RiveAnimation.asset(
-            "assets/RiveAssets/shapes.riv",
-          ),
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-              child: const SizedBox(),
+              "assets/Backgrounds/flower.png",
+              repeat: ImageRepeat.repeat,
             ),
           ),
           AnimatedPositioned(
@@ -72,9 +58,9 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                       child: Column(
                         children: [
                           Text(
-                            "Learn design & code",
+                            "Theology of the Body (TOB)",
                             style: TextStyle(
-                              fontSize: 60,
+                              fontSize: 50,
                               fontWeight: FontWeight.w700,
                               fontFamily: "Poppins",
                               height: 1.2,
@@ -82,7 +68,7 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                           ),
                           SizedBox(height: 16),
                           Text(
-                            "Don’t skip design. Learn design and code, by building real apps with Flutter and Swift. Complete courses about the best tools.",
+                            "As Saint John Paul II’s masterwork, it provides beautiful and compelling answers to the deepest questions we all ask ourselves: Who am I? Why am I here? How can I be happy? Why do I experience all these deep longings in my body and soul and what am I to do with them? What is my ultimate destiny and how do I get there?",
                           ),
                         ],
                       ),
@@ -119,7 +105,7 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Text(
-                          "Purchase includes access to 30+ courses, 240+ premium tutorials, 120+ hours of videos, source files and certificates."),
+                          "-"),
                     )
                   ],
                 ),
