@@ -27,6 +27,7 @@ class BtmNavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isActive = selectedNav == navBar;
     return GestureDetector(
+      behavior: HitTestBehavior.opaque, // Ensures entire area is tappable.
       onTap: press,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -37,21 +38,18 @@ class BtmNavItem extends StatelessWidget {
             width: 36,
             child: Opacity(
               opacity: isActive ? 1 : 0.5,
-              child: RiveAnimatedIcon(
-                riveIcon: navBar.riveIcon,
-                width: 36,
-                height: 36,
-                strokeWidth: 2,
-                color: isActive ? Colors.blue : Colors.grey,
-                loopAnimation: false,
-                // The new RiveAnimatedIcon widget does not use an onInit callback.
-                // However, if you need to execute additional setup logic, 
-                // you could call your riveOnInit callback here if necessary.
-                onTap: () {
-                  // Optionally call your on-init callback here if it matters.
-                  riveOnInit(null);
-                },
-                onHover: (hovering) {},
+              child: IgnorePointer(
+                // This prevents the inner Rive widget from intercepting taps.
+                child: RiveAnimatedIcon(
+                  riveIcon: navBar.riveIcon,
+                  width: 36,
+                  height: 36,
+                  strokeWidth: 2,
+                  color: isActive ? Colors.blue : Colors.grey,
+                  loopAnimation: false,
+                  // Removed the inner onTap callback to avoid conflicts.
+                  onHover: (hovering) {},
+                ),
               ),
             ),
           ),
