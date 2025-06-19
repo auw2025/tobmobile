@@ -1,19 +1,24 @@
+// side_menu.dart
+
 import 'package:flutter/material.dart';
-import 'package:rive/rive.dart';
+import 'package:rive_animated_icon/rive_animated_icon.dart';
 
 import '../../../model/menu.dart';
 
 class SideMenu extends StatelessWidget {
-  const SideMenu(
-      {super.key,
-      required this.menu,
-      required this.press,
-      required this.riveOnInit,
-      required this.selectedMenu});
+  const SideMenu({
+    super.key,
+    required this.menu,
+    required this.press,
+    required this.riveOnInit,
+    required this.selectedMenu,
+  });
 
   final Menu menu;
   final VoidCallback press;
-  final ValueChanged<Artboard> riveOnInit;
+  // Although the new package handles its own initialization,
+  // the widget signature still requires a callback.
+  final ValueChanged<dynamic> riveOnInit;
   final Menu selectedMenu;
 
   @override
@@ -44,10 +49,17 @@ class SideMenu extends StatelessWidget {
               leading: SizedBox(
                 height: 36,
                 width: 36,
-                child: RiveAnimation.asset(
-                  menu.rive.src,
-                  artboard: menu.rive.artboard,
-                  onInit: riveOnInit,
+                child: RiveAnimatedIcon(
+                  riveIcon: menu.riveIcon,
+                  width: 36,
+                  height: 36,
+                  color: Colors.white,
+                  strokeWidth: 2,
+                  loopAnimation: false,
+                  // Since the new package handles initialization internally,
+                  // a dummy callback is provided; adjust if necessary.
+                  onTap: () {},
+                  onHover: (hovering) {},
                 ),
               ),
               title: Text(

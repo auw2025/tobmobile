@@ -1,93 +1,26 @@
-import 'rive_model.dart';
+// menu.dart
+
+import 'package:rive_animated_icon/rive_animated_icon.dart';
 
 class Menu {
   final String title;
-  final RiveModel rive;
+  final RiveIcon riveIcon;
 
-  Menu({required this.title, required this.rive});
+  Menu({required this.title, required this.riveIcon});
 }
 
 List<Menu> sidebarMenus = [
-  Menu(
-    title: "Home",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "HOME",
-        stateMachineName: "HOME_interactivity"),
-  ),
-  Menu(
-    title: "Search",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "SEARCH",
-        stateMachineName: "SEARCH_Interactivity"),
-  ),
-  Menu(
-    title: "Favorites",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "LIKE/STAR",
-        stateMachineName: "STAR_Interactivity"),
-  ),
-  Menu(
-    title: "Help",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "CHAT",
-        stateMachineName: "CHAT_Interactivity"),
-  ),
+  Menu(title: "Home", riveIcon: RiveIcon.home),
+  Menu(title: "Search", riveIcon: RiveIcon.search),
+  Menu(title: "Favorites", riveIcon: RiveIcon.star),
 ];
+
 List<Menu> sidebarMenus2 = [
-  Menu(
-    title: "History",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "TIMER",
-        stateMachineName: "TIMER_Interactivity"),
-  ),
-  Menu(
-    title: "Notifications",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "BELL",
-        stateMachineName: "BELL_Interactivity"),
-  ),
+  Menu(title: "History", riveIcon: RiveIcon.timer),
 ];
 
 List<Menu> bottomNavItems = [
-  Menu(
-    title: "Chat",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "CHAT",
-        stateMachineName: "CHAT_Interactivity"),
-  ),
-  Menu(
-    title: "Search",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "SEARCH",
-        stateMachineName: "SEARCH_Interactivity"),
-  ),
-  Menu(
-    title: "Timer",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "TIMER",
-        stateMachineName: "TIMER_Interactivity"),
-  ),
-  Menu(
-    title: "Notification",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "BELL",
-        stateMachineName: "BELL_Interactivity"),
-  ),
-  Menu(
-    title: "Profile",
-    rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "USER",
-        stateMachineName: "USER_Interactivity"),
-  ),
+  Menu(title: "Search", riveIcon: RiveIcon.search),
+  Menu(title: "Timer", riveIcon: RiveIcon.timer),
+  Menu(title: "Profile", riveIcon: RiveIcon.profile),
 ];
