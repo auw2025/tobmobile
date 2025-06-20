@@ -15,12 +15,20 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  // Add controllers for the email and password fields.
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  // Hardcoded valid credentials.
+  final String validEmail = 'student@tob.com';
+  final String validPassword = '1022';
+
   bool isShowLoading = false;
   bool isShowConfetti = false;
   late SMITrigger error;
   late SMITrigger success;
   late SMITrigger reset;
-
   late SMITrigger confetti;
 
   void _onCheckRiveInit(Artboard artboard) {
@@ -37,42 +45,64 @@ class _SignInFormState extends State<SignInForm> {
     StateMachineController? controller =
         StateMachineController.fromArtboard(artboard, "State Machine 1");
     artboard.addController(controller!);
-
     confetti = controller.findInput<bool>("Trigger explosion") as SMITrigger;
   }
 
   void singIn(BuildContext context) {
-    // confetti.fire();
+    // Start loading and confetti flag
     setState(() {
       isShowConfetti = true;
       isShowLoading = true;
     });
+
     Future.delayed(
       const Duration(seconds: 1),
       () {
+        // First check if the required fields are not empty.
         if (_formKey.currentState!.validate()) {
-          success.fire();
-          Future.delayed(
-            const Duration(seconds: 2),
-            () {
-              setState(() {
-                isShowLoading = false;
-              });
-              confetti.fire();
-              // Navigate & hide confetti
-              Future.delayed(const Duration(seconds: 1), () {
-                // Navigator.pop(context);
-                if (!context.mounted) return;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const EntryPoint(),
-                  ),
+          // Check if credentials match
+          if (_emailController.text == validEmail &&
+              _passwordController.text == validPassword) {
+            // Credentials are correct, trigger the success animation.
+            success.fire();
+            Future.delayed(
+              const Duration(seconds: 2),
+              () {
+                setState(() {
+                  isShowLoading = false;
+                });
+                confetti.fire();
+                // Navigate and hide confetti after animation.
+                Future.delayed(const Duration(seconds: 1), () {
+                  if (!context.mounted) return;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EntryPoint(),
+                    ),
+                  );
+                });
+              },
+            );
+          } else {
+            // Credentials are invalid, trigger error animation.
+            error.fire();
+            Future.delayed(
+              const Duration(seconds: 2),
+              () {
+                setState(() {
+                  isShowLoading = false;
+                });
+                reset.fire();
+                // Optionally, you can also show a message to the user.
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Invalid email or password')),
                 );
-              });
-            },
-          );
+              },
+            );
+          }
         } else {
+          // If validation fails, we trigger error animation.
           error.fire();
           Future.delayed(
             const Duration(seconds: 2),
@@ -106,8 +136,9 @@ class _SignInFormState extends State<SignInForm> {
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
+                  controller: _emailController,
                   validator: (value) {
-                    if (value!.isEmpty) {
+                    if (value == null || value.isEmpty) {
                       return "";
                     }
                     return null;
@@ -131,9 +162,10 @@ class _SignInFormState extends State<SignInForm> {
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
+                  controller: _passwordController,
                   obscureText: true,
                   validator: (value) {
-                    if (value!.isEmpty) {
+                    if (value == null || value.isEmpty) {
                       return "";
                     }
                     return null;
