@@ -31,8 +31,8 @@ class _SideBarState extends State<SideBar> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const InfoCard(
-                name: "Abu Anwar",
-                bio: "YouTuber",
+                name: "Augustine",
+                bio: "Student",
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 24, top: 32, bottom: 16),
