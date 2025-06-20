@@ -20,7 +20,7 @@ List<Menu> sidebarMenus2 = [
 ];
 
 List<Menu> bottomNavItems = [
-  Menu(title: "Search", riveIcon: RiveIcon.search),
-  Menu(title: "Timer", riveIcon: RiveIcon.timer),
+  Menu(title: "Home", riveIcon: RiveIcon.home),
+  Menu(title: "Test", riveIcon: RiveIcon.pen),
   Menu(title: "Profile", riveIcon: RiveIcon.profile),
 ];
